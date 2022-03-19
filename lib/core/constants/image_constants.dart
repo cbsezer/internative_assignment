@@ -9,4 +9,5 @@ class ImageConstants {
   ImageConstants._init();
 
   final String splashGif = 'assets/lottie/splash.json';
+  final String loginAsset = 'assets/images/loginAsset.png';
 }

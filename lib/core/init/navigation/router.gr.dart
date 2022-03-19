@@ -28,8 +28,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const SignUpView());
     },
     LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>(
+          orElse: () => const LoginRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const LoginView());
+          routeData: routeData, child: LoginView(key: args.key));
     },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -86,10 +88,23 @@ class SignUpRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [LoginView]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute() : super(LoginRoute.name, path: '/login-view');
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({Key? key})
+      : super(LoginRoute.name,
+            path: '/login-view', args: LoginRouteArgs(key: key));
 
   static const String name = 'LoginRoute';
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internative_assignment/core/constants/image_constants.dart';
+import '../../../../core/constants/image_constants.dart';
 
 import 'package:lottie/lottie.dart';
 

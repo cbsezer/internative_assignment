@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:internative_assignment/core/init/navigation/router.dart';
-import 'package:internative_assignment/product/manager/cache/user_token_cache.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../../../core/init/navigation/router.dart';
+import '../../../../product/manager/cache/user_token_cache.dart';
 
 part 'splash_view_model.g.dart';
 
@@ -20,7 +21,7 @@ abstract class _SplashViewModelBase with Store {
     if (await UserCacheService().getUserToken() != null) {
       context?.router.navigate(const HomeRoute());
     } else {
-      context?.router.navigate(const LoginRoute());
+      context?.router.navigate(LoginRoute());
     }
   }
 }

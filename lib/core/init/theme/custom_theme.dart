@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:internative_assignment/product/utils/padding/page_padding.dart';
-import 'package:internative_assignment/product/utils/radius/general_radius.dart';
+import '../../../product/utils/padding/page_padding.dart';
+import '../../../product/utils/radius/general_radius.dart';
 
 class ThemeManager {
   static ThemeData craeteTheme() => ThemeData(
@@ -81,7 +81,7 @@ class ThemeManager {
       // backgroundColor: theme.colors.colorScheme?.onSecondary,
       elevation: 5,
       iconTheme: IconThemeData(color: Color(0xff292f3b)),
-      titleTextStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Color(0xff292f3b)),
+      titleTextStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xff292f3b)),
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:internative_assignment/core/constants/text_constants.dart';
-import 'package:internative_assignment/product/utils/padding/page_padding.dart';
 import 'package:kartal/kartal.dart';
+
+import '../../../../core/constants/text_constants.dart';
+import '../../../../product/utils/padding/page_padding.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({Key? key}) : super(key: key);

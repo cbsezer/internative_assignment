@@ -1,4 +1,4 @@
-import 'package:internative_assignment/product/model/base_model.dart';
+import 'base_model.dart';
 
 class UserTokenModel extends BaseModel {
   String? token;

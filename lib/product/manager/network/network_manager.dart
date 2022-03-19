@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:internative_assignment/core/enums/dio_request_enum.dart';
 
+import '../../../core/enums/dio_request_enum.dart';
 import '../cache/user_token_cache.dart';
 
 class NetworkManager {

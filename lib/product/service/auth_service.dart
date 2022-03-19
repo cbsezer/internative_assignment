@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:internative_assignment/feature/authentication/login/model/login_model.dart';
-import 'package:internative_assignment/feature/authentication/signup/model/signup_model.dart';
-import 'package:internative_assignment/product/model/user_token_model.dart';
+import '../../feature/authentication/login/model/login_model.dart';
+import '../../feature/authentication/signup/model/signup_model.dart';
+import '../model/user_token_model.dart';
 
 class AuthService {
   static final AuthService _instance = AuthService._init();
