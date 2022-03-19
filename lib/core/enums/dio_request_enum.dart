@@ -1,0 +1,1 @@
+enum DioRequestTypes { GET, POST }
