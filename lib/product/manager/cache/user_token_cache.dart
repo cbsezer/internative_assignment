@@ -3,20 +3,21 @@ import 'package:hive/hive.dart';
 import 'hive_keys.dart';
 
 class UserCacheService {
-
   Future<void> saveUserToken(String token) async {
     await Hive.openBox(HiveBoxKey.currentUser.name);
     var pin = Hive.box(HiveBoxKey.currentUser.name);
-    await pin.put(HiveBoxKey.currentUser.name,utf8.fuse(base64Url).encode(token));
+    await pin.put(HiveBoxKey.currentUser.name, utf8.fuse(base64Url).encode(token));
   }
 
- 
-  Future<String> getUserToken() async {
+  Future<String?> getUserToken() async {
     await Hive.openBox(HiveBoxKey.currentUser.name);
-    var pin = Hive.box(HiveBoxKey.currentUser.name);
-    var userPin = await pin.get(HiveBoxKey.currentUser.name);
-  
-    String decoded = utf8.fuse(base64Url).decode(userPin);
-    return decoded;
+    var token = Hive.box(HiveBoxKey.currentUser.name);
+    var userToken = await token.get(HiveBoxKey.currentUser.name);
+    if (userToken != null) {
+      String decoded = utf8.fuse(base64Url).decode(userToken);
+      return decoded;
+    } else {
+      return null;
+    }
   }
 }

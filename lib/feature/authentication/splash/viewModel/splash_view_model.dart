@@ -1,22 +1,26 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:internative_assignment/core/init/navigation/router.dart';
+import 'package:internative_assignment/product/manager/cache/user_token_cache.dart';
 import 'package:mobx/mobx.dart';
-
 
 part 'splash_view_model.g.dart';
 
 class SplashViewModel = _SplashViewModelBase with _$SplashViewModel;
 
-abstract class _SplashViewModelBase with Store{
-  @override
-  // void setContext(BuildContext context) => this.context = context;
+abstract class _SplashViewModelBase with Store {
+  BuildContext? context;
+  void setContext(BuildContext context) => this.context = context;
 
-  @override
   void init() {
-    navigateToHome();
+    navigateToWhere();
   }
 
-  Future<void> navigateToHome() async {
-    // await Future.delayed(context.durationSlow);
-    // context.read<NavigationService>().navigateToPageClear(path: NavigationEnums.login.rawValue);
+  Future<void> navigateToWhere() async {
+    if (await UserCacheService().getUserToken() != null) {
+      context?.router.navigate(const HomeRoute());
+    } else {
+      context?.router.navigate(const LoginRoute());
+    }
   }
 }
