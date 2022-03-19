@@ -1,10 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:internative_assignment/product/utils/padding/page_padding.dart';
+import 'package:internative_assignment/product/utils/radius/general_radius.dart';
 
 class ThemeManager {
   static ThemeData craeteTheme() => ThemeData(
         fontFamily: 'Roboto',
         textTheme: const TextTheme(
-          headline6: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+          headline6: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
           headline5: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
           headline4: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
           headline1: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
@@ -20,7 +24,16 @@ class ThemeManager {
         // cardColor: theme.colors.colorScheme?.onSecondary,
         // secondaryHeaderColor: theme.colors.colors.notificationPink,
         // bottomAppBarColor: theme.colors.scaffoldBackgroundColor,
-        elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(onPrimary: Colors.blue)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            // padding: const PagePadding.horizontalSymmetric(),
+            primary: const Color(0xff292f3b),
+            onPrimary: Colors.white,
+            alignment: Alignment.centerLeft,
+            shape: const RoundedRectangleBorder(borderRadius: GeneralRadius.allNormal()),
+          ),
+        ),
+
         inputDecorationTheme: _inputDecoration(),
         bottomAppBarTheme: const BottomAppBarTheme(
           //color: theme.colors.colorScheme?.onSecondary,
@@ -36,13 +49,11 @@ class ThemeManager {
         colorScheme: const ColorScheme(
           primary: Colors.white,
           onBackground: Color(0xfffafafa),
-          onSecondary: Color(0xff292f3b), //x
+          onSecondary: Color(0xff292f3b),
           error: Colors.red, //x
-          // onTertiary: colors.watermelon, //x
           onPrimary: Colors.white,
           onSurface: Colors.grey,
           background: Color(0xfffafafa),
-          // onError: colors.brandPink,
           secondary: Colors.deepPurpleAccent,
           surface: Colors.orange,
           onError: Colors.red,
@@ -53,23 +64,24 @@ class ThemeManager {
 
   static InputDecorationTheme _inputDecoration() {
     return InputDecorationTheme(
-        prefixIconColor: Colors.grey,
-        labelStyle: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
-        fillColor: Colors.blue.shade900,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-        disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(style: BorderStyle.none, color: Colors.grey)),
-        border: const OutlineInputBorder());
+      prefixIconColor: Colors.grey.shade300,
+      focusedBorder: const OutlineInputBorder(borderRadius: GeneralRadius.allNormal()),
+      enabledBorder: const OutlineInputBorder(
+          borderRadius: GeneralRadius.allNormal(), borderSide: BorderSide(color: Color(0xff292f3b))),
+      hintStyle: TextStyle(color: Colors.grey.shade400),
+      fillColor: const Color(0xff292f3b),
+      contentPadding: const PagePadding.horizontalLowSymmetric(),
+      disabledBorder: const OutlineInputBorder(borderRadius: GeneralRadius.allNormal()),
+    );
   }
 
   static AppBarTheme _appBarTheme() {
-    return AppBarTheme(
+    return const AppBarTheme(
       color: Colors.white,
       // backgroundColor: theme.colors.colorScheme?.onSecondary,
       elevation: 5,
-      iconTheme: IconThemeData(color: Colors.blue.shade900),
-      titleTextStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Colors.blue.shade900),
+      iconTheme: IconThemeData(color: Color(0xff292f3b)),
+      titleTextStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Color(0xff292f3b)),
     );
   }
 }

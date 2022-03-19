@@ -25,16 +25,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        //  MaterialApp(
-        //   theme: ThemeManager.craeteTheme(),
-        //   home: const SplashView(),
-        // );
-        MaterialApp.router(
-      builder: (context, widget) => ResponsiveInitialize.builder(child: widget),
-      routerDelegate: AppRouter().delegate(),
-      routeInformationParser: AppRouter().defaultRouteParser(),
+    return MaterialApp(
       theme: ThemeManager.craeteTheme(),
+      home: const LoginView(),
     );
+    //     MaterialApp.router(
+    //   builder: (context, widget) => ResponsiveInitialize.builder(child: widget),
+    //   routerDelegate: AppRouter().delegate(),
+    //   routeInformationParser: AppRouter().defaultRouteParser(),
+    //   theme: ThemeManager.craeteTheme(),
+    // );
   }
 }
