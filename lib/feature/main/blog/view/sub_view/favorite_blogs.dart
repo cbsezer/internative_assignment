@@ -38,7 +38,7 @@ extension BlogGridList on HomeView {
                     bottom: 0,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: GeneralRadius.onlyBottom(),
+                        borderRadius: const GeneralRadius.onlyBottom(),
                         color: Colors.grey.shade300,
                       ),
                       width: context.width * 0.45,

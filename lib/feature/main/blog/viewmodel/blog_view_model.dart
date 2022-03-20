@@ -1,12 +1,12 @@
-import '../../../../product/mixin/get_current_position.dart';
-import '../../../../product/service/get_user_info.dart';
-import '../model/category_model.dart';
-import '../../../../product/widget/toast_message.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/enums/dio_request_enum.dart';
 import '../../../../product/manager/network/network_manager.dart';
+import '../../../../product/service/get_current_position.dart';
+import '../../../../product/service/get_user_info.dart';
+import '../../../../product/widget/toast_message.dart';
 import '../model/blog_model.dart';
+import '../model/category_model.dart';
 
 part 'blog_view_model.g.dart';
 

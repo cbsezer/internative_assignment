@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:internative_assignment/product/service/user_state.dart';
-import 'package:internative_assignment/product/widget/toast_message.dart';
+import 'user_state.dart';
+import '../widget/toast_message.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/enums/dio_request_enum.dart';

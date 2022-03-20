@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:internative_assignment/product/service/user_state.dart';
+import 'product/service/user_state.dart';
 import 'package:provider/provider.dart';
 
 import 'core/init/navigation/router.dart';
 import 'core/init/theme/custom_theme.dart';
-import 'product/manager/network/get_it_locator.dart';
 
 Future<void> main() async {
-  setUpLocators();
   await Hive.initFlutter();
 
   runApp(MultiProvider(providers: [ChangeNotifierProvider(create: (context) => UserProvider())], child: const MyApp())

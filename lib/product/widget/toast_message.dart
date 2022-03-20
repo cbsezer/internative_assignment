@@ -1,5 +1,6 @@
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../utils/size/widget_size.dart';
 
 class CallMessage {

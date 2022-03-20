@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:internative_assignment/product/service/get_user_info.dart';
+import '../../../../product/service/get_user_info.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/image_constants.dart';
 import '../../../../core/init/navigation/router.dart';

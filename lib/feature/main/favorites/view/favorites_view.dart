@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:internative_assignment/feature/main/blog/viewmodel/blog_view_model.dart';
-import 'package:internative_assignment/feature/main/favorites/viewmodel/favorites_view_model.dart';
-import 'package:internative_assignment/feature/main/profile/viewmodel/profile_view_model.dart';
+import '../../blog/viewmodel/blog_view_model.dart';
+import '../viewmodel/favorites_view_model.dart';
 import 'package:kartal/kartal.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../core/constants/text_constants.dart';
-import '../../../../product/service/user_state.dart';
 import '../../../../product/utils/padding/page_padding.dart';
 import '../../../../product/utils/radius/general_radius.dart';
 import '../../blog/model/blog_model.dart';
@@ -49,8 +46,6 @@ class _FavoritesViewState extends State<FavoritesView> {
 
   Observer favoriteList(BuildContext context, bool isFavorite) {
     List<Blog> favorites = _favoriteViewModel.favorites;
-    print(favorites.length);
-
     return Observer(builder: (context) {
       if (_blogViewModel.isServiceRequestLoading) {
         return Center(child: CircularProgressIndicator(color: context.colorScheme.onSecondary));
@@ -89,7 +84,7 @@ class _FavoritesViewState extends State<FavoritesView> {
                       bottom: 0,
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: GeneralRadius.onlyBottom(),
+                          borderRadius: const GeneralRadius.onlyBottom(),
                           color: Colors.grey.shade300,
                         ),
                         width: context.width * 0.45,
