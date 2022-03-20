@@ -10,4 +10,5 @@ class ImageConstants {
 
   final String splashGif = 'assets/lottie/splash.json';
   final String loginAsset = 'assets/images/loginAsset.png';
+  final String defaultUser = 'assets/images/defaultUser.png';
 }

@@ -1,37 +1,122 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:internative_assignment/core/constants/image_constants.dart';
+import 'package:internative_assignment/core/init/navigation/router.dart';
+import 'package:internative_assignment/product/mixin/image_picker_mixin.dart';
+import 'package:internative_assignment/product/utils/radius/general_radius.dart';
+import 'package:internative_assignment/product/widget/elevated_circular_button.dart';
+import 'package:kartal/kartal.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key}) : super(key: key);
+import '../../../../core/constants/text_constants.dart';
+import '../../../../product/utils/padding/page_padding.dart';
+
+class ProfileView extends StatelessWidget with ImagePickerMixin {
+  ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.white, title: Text(TextConstants.instance.profile), centerTitle: true),
+      body: Padding(
+        padding: const PagePadding.horizontalSymmetric(),
+        child: Column(children: [
+          context.emptySizedHeightBoxNormal,
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: GeneralRadius.allNormal(),
+                child: Image.asset(ImageConstants.instance.defaultUser, height: context.height * .15),
+              ),
+              Positioned(
+                  bottom: 5,
+                  right: 5,
+                  child: IconButton(
+                      onPressed: () {
+                        showImagePickers(context);
+                      },
+                      icon: Icon(FontAwesomeIcons.camera)))
+            ],
+          ),
+          context.emptySizedHeightBoxLow3x,
+          SizedBox(
+            height: context.height * .2,
+            child: ClipRRect(
+              borderRadius: GeneralRadius.all(),
+              child: GoogleMap(
+                // ignore: prefer_collection_literals
+                markers: Set<Marker>.of(
+                  <Marker>[
+                    Marker(
+                        draggable: true,
+                        markerId: const MarkerId('Marker'),
+                        position: const LatLng(40.9792, 29.1206),
+                        onDragEnd: ((newPosition) {})),
+                  ],
+                ),
+                mapType: MapType.normal,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(40.9792, 29.1206),
+                  zoom: 14.4746,
+                ),
+              ),
+            ),
+          ),
+          context.emptySizedHeightBoxNormal,
+          CustomElevatedButton(
+              title: TextConstants.instance.save,
+              onPressed: () {
+                return context.router.navigate(LoginRoute());
+              },
+              isWhite: true),
+          context.emptySizedHeightBoxLow3x,
+          CustomElevatedButton(
+              title: TextConstants.instance.logOut,
+              onPressed: () {
+                return context.router.navigate(LoginRoute());
+              },
+              isWhite: false),
+        ]),
+      ),
+    );
   }
 }
 
-// SizedBox(
-//   height: context.height * .3,
-//   width: context.width * .9,
-//   child: GoogleMap(
-//     // ignore: prefer_collection_literals
-//     markers: Set<Marker>.of(
-//       <Marker>[
-//         Marker(
-//             draggable: true,
-//             markerId: const MarkerId('Marker'),
-//             position: const LatLng(40.9792, 29.1206),
-//             onDragEnd: ((newPosition) {})),
-//       ],
-//     ),
-
-//     mapType: MapType.hybrid,
-//     initialCameraPosition: const CameraPosition(
-//       target: LatLng(40.9792, 29.1206),
-//       zoom: 14.4746,
-//     ),
-//   ),
-// ),
+// AnimatedCrossFade _selectedImage(BuildContext context) {
+//   return AnimatedCrossFade(
+//     duration: context.durationLow,
+//     // crossFadeState: _votModelAdd.selectedFile != null ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+//     // secondChild: _votModelAdd.selectedFile?.path == null
+//         ? const SizedBox()
+//         : SizedBox(
+//             height: context.dynamicHeight(0.1),
+//             width: context.dynamicWidth(0.5),
+//             child: FittedBox(
+//               fit: BoxFit.fill,
+//               child: (_votModelAdd.selectedFile?.path.isNotNullOrNoEmpty ?? false)
+//                   ? Image.file(File(_votModelAdd.selectedFile?.path ?? ''))
+//                   : FutureBuilder(
+//                       future: _votModelAdd.selectedFile?.readAsBytes(),
+//                       builder: (BuildContext context, AsyncSnapshot snapshot) {
+//                         if (snapshot.hasData) {
+//                           return Image.memory(snapshot.data);
+//                         } else {
+//                           return const CircularProgressIndicator();
+//                         }
+//                       },
+//                     ),
+//             ),
+//           ),
+//     firstChild: ElevatedButton(
+//         onPressed: _pickItems,
+//         child: const Padding(
+//           padding: PagePadding.allLow(),
+//           child: Icon(Icons.add_circle_outline, size: 40),
+//         )),
+//   );
+// }
 
 Future<Position> _determinePosition() async {
   bool serviceEnabled;

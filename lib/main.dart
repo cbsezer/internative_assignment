@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:internative_assignment/feature/authentication/signup/view/sign_up_view.dart';
+import 'package:internative_assignment/feature/main/blog/view/home_view.dart';
+import 'package:internative_assignment/feature/main/bottom_bar/bottom_bar_view.dart';
+import 'package:internative_assignment/feature/main/profile/view/profile_view.dart';
 
 import 'core/init/navigation/router.dart';
 import 'core/init/responsive/responsive_initialize.dart';
@@ -26,12 +29,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        //  MaterialApp(
-        //   theme: ThemeManager.craeteTheme(),
-        //   home: SignUpView(),
-        // );
-        MaterialApp.router(
+    return MaterialApp(
+      theme: ThemeManager.craeteTheme(),
+      home: HomeView(),
+    );
+    MaterialApp.router(
       // builder: (context, widget) => ResponsiveInitialize.builder(child: widget),
       routerDelegate: AppRouter().delegate(),
       routeInformationParser: AppRouter().defaultRouteParser(),

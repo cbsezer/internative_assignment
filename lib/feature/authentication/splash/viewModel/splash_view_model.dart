@@ -18,6 +18,7 @@ abstract class _SplashViewModelBase with Store {
   }
 
   Future<void> navigateToWhere() async {
+    print(await UserCacheService().getUserToken());
     if (await UserCacheService().getUserToken() != null) {
       context?.router.navigate(const TabBlogRoute());
     } else {

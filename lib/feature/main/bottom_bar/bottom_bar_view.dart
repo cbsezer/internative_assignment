@@ -25,7 +25,7 @@ class _TabBlogViewState extends State<TabBlogView> with TickerProviderStateMixin
   }
 
   Color? _activatedColor(_BlogTabItems value) {
-    return _tabController.index == value.index ? context.colorScheme.primary : context.colorScheme.onBackground;
+    return _tabController.index == value.index ? context.colorScheme.onSecondary : context.colorScheme.onSurface;
   }
 
   @override
@@ -43,7 +43,7 @@ class _TabBlogViewState extends State<TabBlogView> with TickerProviderStateMixin
         body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
-            children: const [FavoritesView(), HomeView(), ProfileView()]),
+            children:  [FavoritesView(), HomeView(), ProfileView()]),
         bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.vertical(top: context.normalRadius),
           child: BottomAppBar(
@@ -54,7 +54,7 @@ class _TabBlogViewState extends State<TabBlogView> with TickerProviderStateMixin
                   Expanded(
                       child: TextButton(
                           onPressed: () => _changePage(_BlogTabItems.favorites),
-                          child: Icon(FontAwesomeIcons.heart, color: _activatedColor(_BlogTabItems.favorites)))),
+                          child: Icon(FontAwesomeIcons.solidHeart, color: _activatedColor(_BlogTabItems.favorites)))),
                   Expanded(
                       child: TextButton(
                           onPressed: () => _changePage(_BlogTabItems.home),

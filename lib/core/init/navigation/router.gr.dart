@@ -44,8 +44,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const FavoritesView());
     },
     ProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileRouteArgs>(
+          orElse: () => const ProfileRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const ProfileView());
+          routeData: routeData, child: ProfileView(key: args.key));
     }
   };
 
@@ -123,8 +125,21 @@ class FavoritesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ProfileView]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute() : super(ProfileRoute.name, path: '/profile-view');
+class ProfileRoute extends PageRouteInfo<ProfileRouteArgs> {
+  ProfileRoute({Key? key})
+      : super(ProfileRoute.name,
+            path: '/profile-view', args: ProfileRouteArgs(key: key));
 
   static const String name = 'ProfileRoute';
+}
+
+class ProfileRouteArgs {
+  const ProfileRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileRouteArgs{key: $key}';
+  }
 }
