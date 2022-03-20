@@ -20,8 +20,6 @@ class NetworkManager {
       'Authorization': 'Bearer ${await UserCacheService().getUserToken()}'
     };
 
-    print(headers);
-
     var _url = 'http://test20.internative.net/';
     var _uri = _url + path;
     if (method == DioRequestTypes.GET.name) {

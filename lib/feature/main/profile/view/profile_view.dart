@@ -2,10 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:internative_assignment/product/service/get_user_info.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/constants/image_constants.dart';
 import '../../../../core/init/navigation/router.dart';
 import '../../../../product/manager/cache/user_token_cache.dart';
 import '../../../../product/mixin/image_picker_mixin.dart';
+import '../../../../product/service/user_state.dart';
 import '../../../../product/utils/radius/general_radius.dart';
 import '../../../../product/widget/elevated_circular_button.dart';
 import 'package:kartal/kartal.dart';
@@ -19,8 +22,14 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
 
   @override
   Widget build(BuildContext context) {
+    var currentUser = Provider.of<UserProvider>(context, listen: false).currentUser;
+
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, title: Text(TextConstants.instance.profile), centerTitle: true),
+      appBar: AppBar(
+          leading: const SizedBox(),
+          backgroundColor: Colors.white,
+          title: Text(TextConstants.instance.profile),
+          centerTitle: true),
       body: Padding(
         padding: const PagePadding.horizontalSymmetric(),
         child: Column(children: [
@@ -53,15 +62,18 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
                     Marker(
                         draggable: true,
                         markerId: const MarkerId('Marker'),
-                        position: const LatLng(40.9792, 29.1206),
-                        onDragEnd: ((newPosition) {})),
+                        position: LatLng(double.parse(currentUser!.user!.location?.latitude ?? '0'),
+                            double.parse(currentUser.user!.location?.longtitude ?? '0')),
+                        onDragEnd: ((newPosition) async {
+                          await UserService().updateUserInfo(context, newPosition);
+                        })),
                   ],
                 ),
                 mapType: MapType.normal,
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(40.9792, 29.1206),
-                  zoom: 14.4746,
-                ),
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(double.parse(currentUser.user!.location?.latitude ?? '0'),
+                        double.parse(currentUser.user!.location?.longtitude ?? '0')),
+                    zoom: 14.4746),
               ),
             ),
           ),
@@ -84,61 +96,4 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
       ),
     );
   }
-}
-
-// AnimatedCrossFade _selectedImage(BuildContext context) {
-//   return AnimatedCrossFade(
-//     duration: context.durationLow,
-//     // crossFadeState: _votModelAdd.selectedFile != null ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-//     // secondChild: _votModelAdd.selectedFile?.path == null
-//         ? const SizedBox()
-//         : SizedBox(
-//             height: context.dynamicHeight(0.1),
-//             width: context.dynamicWidth(0.5),
-//             child: FittedBox(
-//               fit: BoxFit.fill,
-//               child: (_votModelAdd.selectedFile?.path.isNotNullOrNoEmpty ?? false)
-//                   ? Image.file(File(_votModelAdd.selectedFile?.path ?? ''))
-//                   : FutureBuilder(
-//                       future: _votModelAdd.selectedFile?.readAsBytes(),
-//                       builder: (BuildContext context, AsyncSnapshot snapshot) {
-//                         if (snapshot.hasData) {
-//                           return Image.memory(snapshot.data);
-//                         } else {
-//                           return const CircularProgressIndicator();
-//                         }
-//                       },
-//                     ),
-//             ),
-//           ),
-//     firstChild: ElevatedButton(
-//         onPressed: _pickItems,
-//         child: const Padding(
-//           padding: PagePadding.allLow(),
-//           child: Icon(Icons.add_circle_outline, size: 40),
-//         )),
-//   );
-// }
-
-Future<Position> _determinePosition() async {
-  bool serviceEnabled;
-  LocationPermission permission;
-
-  serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    return Future.error('Location services are disabled.');
-  }
-
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
-    }
-  }
-
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error('Location permissions are permanently denied, we cannot request permissions.');
-  }
-  return await Geolocator.getCurrentPosition();
 }

@@ -60,8 +60,9 @@ mixin _$BlogViewModel on _BlogViewModel, Store {
       AsyncAction('_BlogViewModel.fetchCategories');
 
   @override
-  Future<void> fetchCategories() {
-    return _$fetchCategoriesAsyncAction.run(() => super.fetchCategories());
+  Future<void> fetchCategories(dynamic context) {
+    return _$fetchCategoriesAsyncAction
+        .run(() => super.fetchCategories(context));
   }
 
   final _$fetchBlogsAsyncAction = AsyncAction('_BlogViewModel.fetchBlogs');

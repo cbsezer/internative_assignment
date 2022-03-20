@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../product/manager/cache/favorite_blogs._cache_service.dart';
+
 import '../../../../product/utils/radius/general_radius.dart';
 import 'package:kartal/kartal.dart';
 
@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isFavorite = false;
-    _viewModel.fetchCategories();
+    _viewModel.fetchCategories(context);
     _viewModel.fetchBlogs('');
 
     return Scaffold(
@@ -46,7 +46,7 @@ class HomeView extends StatelessWidget {
       if (_viewModel.isServiceRequestLoading) {
         return Center(
           child: CircularProgressIndicator(
-            color: Theme.of(context).colorScheme.onSecondary,
+            color: Theme.of(context).colorScheme.onSecondary
           ),
         );
       } else {

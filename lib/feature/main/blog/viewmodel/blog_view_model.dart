@@ -1,3 +1,5 @@
+import '../../../../product/mixin/get_current_position.dart';
+import '../../../../product/service/get_user_info.dart';
 import '../model/category_model.dart';
 import '../../../../product/widget/toast_message.dart';
 import 'package:mobx/mobx.dart';
@@ -19,12 +21,16 @@ abstract class _BlogViewModel with Store {
   bool isServiceRequestLoading = true;
 
   @action
-  Future<void> fetchCategories() async {
+  Future<void> fetchCategories(context) async {
     dataChanged(value: true);
     final response =
         await NetworkManager.instance.dioRequest(path: 'Blog/GetCategories', method: DioRequestTypes.GET.name);
     final responseModel = CategoryModel.fromJson(response.data);
-
+    var user = await UserService().fetchUserInfos(context);
+    if (user.user!.location == null) {
+      var position = await determinePosition();
+      UserService().updateUserInfo(context, position);
+    }
     categories = responseModel.categories ?? [];
     dataChanged(value: false);
   }

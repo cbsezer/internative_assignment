@@ -21,25 +21,18 @@ extension BlogGridList on HomeView {
                         image: DecorationImage(
                             image: NetworkImage(viewModel.blogs[index].image ?? ''), fit: BoxFit.cover)),
                   ),
-                  Observer(builder: (_) {
-                    return StatefulBuilder(builder: (context, customSetState) {
-                      return Align(
-                          alignment: Alignment.topRight,
-                          child: IconButton(
-                            onPressed: () async {
-                              await viewModel.toggleIsFavorite(viewModel.blogs[index].id ?? '', context);
-                              customSetState(() {
-                                isFavorite = !isFavorite;
-                              });
-                              if (isFavorite) {
-                                FavoritesCacheService().addFavoritesList(blog: viewModel.blogs[index]);
-                              } else {
-                                FavoritesCacheService().deleteFromFavoritesList(index: index);
-                              }
-                            },
-                            icon: Icon(isFavorite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart),
-                          ));
-                    });
+                  StatefulBuilder(builder: (context, customSetState) {
+                    return Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          onPressed: () async {
+                            await viewModel.toggleIsFavorite(viewModel.blogs[index].id ?? '', context);
+                            customSetState(() {
+                              isFavorite = !isFavorite;
+                            });
+                          },
+                          icon: Icon(isFavorite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart),
+                        ));
                   }),
                   Positioned(
                     bottom: 0,
