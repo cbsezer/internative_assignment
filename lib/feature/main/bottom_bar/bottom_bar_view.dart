@@ -8,14 +8,14 @@ import '../profile/view/profile_view.dart';
 
 enum _BlogTabItems { favorites, home, person }
 
-class TabVotView extends StatefulWidget {
-  const TabVotView({Key? key}) : super(key: key);
+class TabBlogView extends StatefulWidget {
+  const TabBlogView({Key? key}) : super(key: key);
 
   @override
-  State<TabVotView> createState() => _TabVotViewState();
+  State<TabBlogView> createState() => _TabBlogViewState();
 }
 
-class _TabVotViewState extends State<TabVotView> with TickerProviderStateMixin {
+class _TabBlogViewState extends State<TabBlogView> with TickerProviderStateMixin {
   late TabController _tabController;
 
   void _changePage(_BlogTabItems value) {

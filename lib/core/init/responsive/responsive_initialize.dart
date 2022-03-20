@@ -7,7 +7,7 @@ class ResponsiveInitialize {
   static Widget builder({Widget? child}) {
     return ResponsiveWrapper.builder(
       child,
-      maxWidth: 800,
+      maxWidth: 1200,
       minWidth: 480,
       defaultScale: true,
       breakpoints: [

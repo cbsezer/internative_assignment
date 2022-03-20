@@ -27,4 +27,8 @@ class TextConstants {
   final String register = 'Register';
   final String login = 'Login';
   final String loading = 'Loading';
+
+  final String validateMailError = "Geçerli bir e-posta adresi giriniz.";
+  final String validatePassword = "Geçerli bir şifre giriniz.";
+  final String passwordAgainValidateError = 'Şifreler uyuşmuyor.';
 }

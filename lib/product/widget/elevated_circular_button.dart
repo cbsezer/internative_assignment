@@ -49,7 +49,7 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
                         side: BorderSide(color: Theme.of(context).colorScheme.onSecondary)),
                   )
                 : Theme.of(context).elevatedButtonTheme.style,
-            onPressed: _isLoading ? null : _completeProcess,
+            onPressed: _completeProcess,
             icon: Icon(widget.icon ?? FontAwesomeIcons.signInAlt, size: WidgetSizes.spacingML),
             label: Center(
                 child: Text(widget.title,

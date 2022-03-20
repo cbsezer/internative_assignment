@@ -28,10 +28,12 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const SignUpView());
     },
     LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>(
-          orElse: () => const LoginRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: LoginView(key: args.key));
+          routeData: routeData, child: const LoginView());
+    },
+    TabBlogRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const TabBlogView());
     },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -52,6 +54,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(SignUpRoute.name, path: '/sign-up-view'),
         RouteConfig(LoginRoute.name, path: '/login-view'),
+        RouteConfig(TabBlogRoute.name, path: '/tab-blog-view'),
         RouteConfig(HomeRoute.name, path: '/home-view'),
         RouteConfig(FavoritesRoute.name, path: '/favorites-view'),
         RouteConfig(ProfileRoute.name, path: '/profile-view')
@@ -88,23 +91,18 @@ class SignUpRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [LoginView]
-class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({Key? key})
-      : super(LoginRoute.name,
-            path: '/login-view', args: LoginRouteArgs(key: key));
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute() : super(LoginRoute.name, path: '/login-view');
 
   static const String name = 'LoginRoute';
 }
 
-class LoginRouteArgs {
-  const LoginRouteArgs({this.key});
+/// generated route for
+/// [TabBlogView]
+class TabBlogRoute extends PageRouteInfo<void> {
+  const TabBlogRoute() : super(TabBlogRoute.name, path: '/tab-blog-view');
 
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'LoginRouteArgs{key: $key}';
-  }
+  static const String name = 'TabBlogRoute';
 }
 
 /// generated route for

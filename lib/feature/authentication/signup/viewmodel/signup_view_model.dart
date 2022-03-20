@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-part 'login_view_model.g.dart';
+part 'signup_view_model.g.dart';
 
-class LoginViewModel = _LoginViewModel with _$LoginViewModel;
+class SignupViewModel = _SignupViewModel with _$SignupViewModel;
 
-abstract class _LoginViewModel with Store {
+abstract class _SignupViewModel with Store {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController rePasswordController = TextEditingController();
 
   @observable
   bool showPassword = false;
@@ -18,9 +19,9 @@ abstract class _LoginViewModel with Store {
 
   @computed
   bool get isFormValid => emailController.text.contains('@') && passwordController.text.length > 6;
-
   void clearController() {
     emailController.clear();
     passwordController.clear();
+    rePasswordController.clear();
   }
 }

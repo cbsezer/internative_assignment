@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../viewmodel/login_view_model.dart';
+import 'package:internative_assignment/feature/authentication/signup/model/signup_model.dart';
 import '../../../../core/constants/image_constants.dart';
 import '../../../../core/constants/text_constants.dart';
 import '../../../../core/init/navigation/router.dart';
@@ -12,26 +12,19 @@ import 'package:kartal/kartal.dart';
 import '../../../../product/service/auth_service.dart';
 import '../../../../product/widget/elevated_circular_button.dart';
 import '../../../../product/widget/text_form_fields.dart';
-import '../model/login_model.dart';
+import '../viewmodel/signup_view_model.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
-
-//  Future<LatLng> takeLatLong()async {
-//     var position = await _determinePosition();
-//     return LatLng(position.latitude, position.longitude);
-//   }
-//     takeData() async{
-//      return await takeLatLong();
-//    }
+class SignUpView extends StatelessWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
-    final _viewModel = LoginViewModel();
+    final _viewModel = SignupViewModel();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(backgroundColor: Colors.white, title: Text(TextConstants.instance.login), centerTitle: true),
+      appBar: AppBar(backgroundColor: Colors.white, title: Text(TextConstants.instance.signUpPage), centerTitle: true),
       body: Padding(
         padding: const PagePadding.horizontalSymmetric(),
         child: Column(
@@ -41,41 +34,53 @@ class LoginView extends StatelessWidget {
             context.emptySizedHeightBoxNormal,
             Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  emailTextField(context, controller: _viewModel.emailController),
-                  context.emptySizedHeightBoxLow,
-                  context.emptySizedHeightBoxLow,
-                  Observer(builder: (_) {
-                    return passwordTextField(context,
+              child: Observer(builder: (_) {
+                return Column(
+                  children: [
+                    emailTextField(context, controller: _viewModel.emailController),
+                    context.emptySizedHeightBoxLow,
+                    context.emptySizedHeightBoxLow,
+                    passwordTextField(context,
                         text: TextConstants.instance.password,
                         controller: _viewModel.passwordController,
                         viewModel: _viewModel,
-                        validate: null);
-                  })
-                ],
-              ),
+                        validate: null),
+                    context.emptySizedHeightBoxLow,
+                    context.emptySizedHeightBoxLow,
+                    passwordTextField(context,
+                        text: TextConstants.instance.rePassword,
+                        controller: _viewModel.rePasswordController,
+                        viewModel: _viewModel,
+                        validate: (_viewModel.rePasswordController.text == _viewModel.passwordController.text
+                            ? null
+                            : TextConstants.instance.passwordAgainValidateError))
+                  ],
+                );
+              }),
             ),
             context.emptySizedHeightBoxNormal,
             CustomElevatedButton(
-                title: TextConstants.instance.login,
+                title: TextConstants.instance.register,
                 isWhite: false,
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     await AuthService.instance.auth(
-                        LoginModel(email: _viewModel.emailController.text, password: _viewModel.passwordController.text)
+                        SignUpModel(
+                                email: _viewModel.emailController.text,
+                                password: _viewModel.passwordController.text,
+                                passwordRetry: _viewModel.rePasswordController.text)
                             .toJson(),
                         context,
-                        'Login/SignIn');
+                        'Login/SignUp');
                   }
                 }),
             context.emptySizedHeightBoxLow,
             context.emptySizedHeightBoxLow,
             CustomElevatedButton(
                 isWhite: true,
-                title: TextConstants.instance.register,
+                title: TextConstants.instance.login,
                 onPressed: () async {
-                  await context.router.navigate(const SignUpRoute());
+                  await context.router.navigate(const LoginRoute());
                 }),
           ],
         ),
