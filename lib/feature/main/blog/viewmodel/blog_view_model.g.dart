@@ -56,21 +56,6 @@ mixin _$BlogViewModel on _BlogViewModel, Store {
     });
   }
 
-  final _$isFavoriteAtom = Atom(name: '_BlogViewModel.isFavorite');
-
-  @override
-  bool get isFavorite {
-    _$isFavoriteAtom.reportRead();
-    return super.isFavorite;
-  }
-
-  @override
-  set isFavorite(bool value) {
-    _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
-      super.isFavorite = value;
-    });
-  }
-
   final _$fetchCategoriesAsyncAction =
       AsyncAction('_BlogViewModel.fetchCategories');
 
@@ -114,8 +99,7 @@ mixin _$BlogViewModel on _BlogViewModel, Store {
     return '''
 categories: ${categories},
 blogs: ${blogs},
-isServiceRequestLoading: ${isServiceRequestLoading},
-isFavorite: ${isFavorite}
+isServiceRequestLoading: ${isServiceRequestLoading}
     ''';
   }
 }

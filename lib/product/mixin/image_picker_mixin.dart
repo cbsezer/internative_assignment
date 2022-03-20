@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:internative_assignment/product/utils/radius/general_radius.dart';
+import '../utils/radius/general_radius.dart';
 
 import '../widget/image_picker_sheet.dart';
 

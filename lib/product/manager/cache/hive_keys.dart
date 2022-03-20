@@ -1,1 +1,1 @@
-enum HiveBoxKey { currentUser }
+enum HiveBoxKey { currentUser, favorites }

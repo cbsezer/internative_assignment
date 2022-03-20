@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/image_constants.dart';
-
 import 'package:lottie/lottie.dart';
 
+import '../../../../core/constants/image_constants.dart';
 import '../viewModel/splash_view_model.dart';
 
 class SplashView extends StatelessWidget {

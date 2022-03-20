@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:internative_assignment/core/constants/text_constants.dart';
-import 'package:internative_assignment/product/utils/padding/page_padding.dart';
-import 'package:internative_assignment/product/widget/elevated_circular_button.dart';
+import '../../core/constants/text_constants.dart';
+import '../utils/padding/page_padding.dart';
+import 'elevated_circular_button.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../core/init/navigation/router.dart';

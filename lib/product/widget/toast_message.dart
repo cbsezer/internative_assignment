@@ -1,6 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:internative_assignment/product/utils/size/widget_size.dart';
+import '../utils/size/widget_size.dart';
 
 class CallMessage {
   static void callToastMessage({required String text, required BuildContext context}) {

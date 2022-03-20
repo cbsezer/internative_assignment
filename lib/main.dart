@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:internative_assignment/feature/main/blog/view/home_view.dart';
+
 import 'core/init/navigation/router.dart';
 import 'core/init/theme/custom_theme.dart';
 import 'product/manager/network/get_it_locator.dart';

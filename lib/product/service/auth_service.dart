@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:internative_assignment/core/init/navigation/router.dart';
-import 'package:internative_assignment/product/manager/cache/user_token_cache.dart';
-import 'package:internative_assignment/product/widget/toast_message.dart';
+import '../../core/init/navigation/router.dart';
+import '../manager/cache/user_token_cache.dart';
+import '../widget/toast_message.dart';
 
 import '../model/user_token_model.dart';
 

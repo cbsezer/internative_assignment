@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:internative_assignment/core/constants/image_constants.dart';
-import 'package:internative_assignment/core/init/navigation/router.dart';
-import 'package:internative_assignment/product/manager/cache/user_token_cache.dart';
-import 'package:internative_assignment/product/mixin/image_picker_mixin.dart';
-import 'package:internative_assignment/product/utils/radius/general_radius.dart';
-import 'package:internative_assignment/product/widget/elevated_circular_button.dart';
+import '../../../../core/constants/image_constants.dart';
+import '../../../../core/init/navigation/router.dart';
+import '../../../../product/manager/cache/user_token_cache.dart';
+import '../../../../product/mixin/image_picker_mixin.dart';
+import '../../../../product/utils/radius/general_radius.dart';
+import '../../../../product/widget/elevated_circular_button.dart';
 import 'package:kartal/kartal.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

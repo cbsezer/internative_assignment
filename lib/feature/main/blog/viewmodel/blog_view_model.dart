@@ -1,5 +1,5 @@
-import 'package:internative_assignment/feature/main/blog/model/category_model.dart';
-import 'package:internative_assignment/product/widget/toast_message.dart';
+import '../model/category_model.dart';
+import '../../../../product/widget/toast_message.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/enums/dio_request_enum.dart';
@@ -33,7 +33,7 @@ abstract class _BlogViewModel with Store {
   Future<void> fetchBlogs(String categoryId) async {
     dataChanged(value: true);
     final response = await NetworkManager.instance.dioRequest(
-        path: '/Blog/GetBlogs',
+        path: 'Blog/GetBlogs',
         method: DioRequestTypes.POST.name,
         queryJson: {"CategoryId": "620ceffecd70d74ab56d5b81"});
     final responseModel = BlogModel.fromJson(response.data);
@@ -46,15 +46,11 @@ abstract class _BlogViewModel with Store {
     isServiceRequestLoading = value;
   }
 
-  @observable
-  bool isFavorite = false;
-
   @action
   Future<void> toggleIsFavorite(String id, context) async {
     final response = await NetworkManager.instance
         .dioRequest(path: 'Blog/ToggleFavorite', method: DioRequestTypes.POST.name, queryJson: {"Id": id});
     if (response.statusCode == 200) {
-      isFavorite = !isFavorite;
       CallMessage.callToastMessage(text: response.data['Message'], context: context);
     }
   }
