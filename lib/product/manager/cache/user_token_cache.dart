@@ -22,4 +22,11 @@ class UserCacheService {
       return null;
     }
   }
+
+  Future<void> clearUserBox() async {
+    await Hive.openBox(HiveBoxKey.currentUser.name);
+
+    var tokenBox = Hive.box(HiveBoxKey.currentUser.name);
+    await tokenBox.clear();
+  }
 }

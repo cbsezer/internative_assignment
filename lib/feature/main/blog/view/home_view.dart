@@ -42,12 +42,12 @@ class HomeView extends StatelessWidget {
               ),
             ),
             Text('Blog', style: Theme.of(context).textTheme.headline6),
-            GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                itemBuilder: (BuildContext ctx, index) {
-                  return const Text('aaaaaa');
-                })
+            // GridView.builder(
+            //     shrinkWrap: true,
+            //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            //     itemBuilder: (BuildContext ctx, index) {
+            //       return const Text('aaaaaa');
+            //     })
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:internative_assignment/core/constants/image_constants.dart';
 import 'package:internative_assignment/core/init/navigation/router.dart';
+import 'package:internative_assignment/product/manager/cache/user_token_cache.dart';
 import 'package:internative_assignment/product/mixin/image_picker_mixin.dart';
 import 'package:internative_assignment/product/utils/radius/general_radius.dart';
 import 'package:internative_assignment/product/widget/elevated_circular_button.dart';
@@ -67,15 +68,16 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
           context.emptySizedHeightBoxNormal,
           CustomElevatedButton(
               title: TextConstants.instance.save,
-              onPressed: () {
-                return context.router.navigate(LoginRoute());
+              onPressed: () async {
+                await context.router.navigate(LoginRoute());
               },
               isWhite: true),
           context.emptySizedHeightBoxLow3x,
           CustomElevatedButton(
               title: TextConstants.instance.logOut,
-              onPressed: () {
-                return context.router.navigate(LoginRoute());
+              onPressed: () async {
+                await UserCacheService().clearUserBox();
+                await context.router.navigate(const LoginRoute());
               },
               isWhite: false),
         ]),

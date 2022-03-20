@@ -67,6 +67,7 @@ class LoginView extends StatelessWidget {
                             .toJson(),
                         context,
                         'Login/SignIn');
+                    _viewModel.clearController();
                   }
                 }),
             context.emptySizedHeightBoxLow,

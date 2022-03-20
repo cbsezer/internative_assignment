@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:internative_assignment/product/utils/size/widget_size.dart';
 
 class CallMessage {
-  static void callToastMessage({required String text, context}) {
+  static void callToastMessage({required String text, required BuildContext context}) {
     Fluttertoast.showToast(
         msg: text,
         toastLength: Toast.LENGTH_SHORT,

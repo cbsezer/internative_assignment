@@ -52,8 +52,7 @@ class SignUpView extends StatelessWidget {
                         controller: _viewModel.rePasswordController,
                         viewModel: _viewModel,
                         validate: (_viewModel.rePasswordController.text == _viewModel.passwordController.text
-                            ? null
-                            : TextConstants.instance.passwordAgainValidateError))
+                            ? null : TextConstants.instance.passwordAgainValidateError))
                   ],
                 );
               }),
@@ -66,12 +65,11 @@ class SignUpView extends StatelessWidget {
                   if (_formKey.currentState!.validate()) {
                     await AuthService.instance.auth(
                         SignUpModel(
-                                email: _viewModel.emailController.text,
-                                password: _viewModel.passwordController.text,
-                                passwordRetry: _viewModel.rePasswordController.text)
-                            .toJson(),
-                        context,
-                        'Login/SignUp');
+                        email: _viewModel.emailController.text,
+                        password: _viewModel.passwordController.text,
+                        passwordRetry: _viewModel.rePasswordController.text).toJson(),
+                        context, 'Login/SignUp');
+                    _viewModel.clearController();
                   }
                 }),
             context.emptySizedHeightBoxLow,

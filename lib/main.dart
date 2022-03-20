@@ -29,11 +29,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeManager.craeteTheme(),
-      home: HomeView(),
-    );
-    MaterialApp.router(
+    return
+        // MaterialApp(
+        //   theme: ThemeManager.craeteTheme(),
+        //   home: ProfileView(),
+        // );
+        MaterialApp.router(
       // builder: (context, widget) => ResponsiveInitialize.builder(child: widget),
       routerDelegate: AppRouter().delegate(),
       routeInformationParser: AppRouter().defaultRouteParser(),

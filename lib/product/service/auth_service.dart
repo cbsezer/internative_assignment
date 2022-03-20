@@ -22,9 +22,10 @@ class AuthService {
   final _url = 'http://test20.internative.net/';
 
   Future auth(Map<String, dynamic> model, BuildContext context, String path) async {
+    var response = await dio.post(_url + path, options: Options(contentType: 'application/json'), data: model);
     try {
-      var response = await dio.post(_url + path, options: Options(contentType: 'application/json'), data: model);
       var responseModel = UserTokenModel.fromJson(response.data);
+
       if (response.statusCode == 200 && !(responseModel.hasError ?? false)) {
         if (responseModel.token != null) {
           UserCacheService().saveUserToken(responseModel.token!);
@@ -37,7 +38,7 @@ class AuthService {
       if (e is DioError) {
         CallMessage.callToastMessage(text: 'Hata', context: context);
       } else {
-        CallMessage.callToastMessage(text: e.toString(), context: context);
+        CallMessage.callToastMessage(text: response.data['Message'], context: context);
       }
     }
   }
