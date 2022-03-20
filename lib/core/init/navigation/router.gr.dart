@@ -36,8 +36,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const TabBlogView());
     },
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const HomeView());
+          routeData: routeData, child: HomeView(key: args.key));
     },
     FavoritesRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -109,10 +111,23 @@ class TabBlogRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [HomeView]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/home-view');
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({Key? key})
+      : super(HomeRoute.name,
+            path: '/home-view', args: HomeRouteArgs(key: key));
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -2,11 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:internative_assignment/core/init/navigation/router.dart';
-import 'package:internative_assignment/feature/main/bottom_bar/bottom_bar_view.dart';
 import 'package:internative_assignment/product/manager/cache/user_token_cache.dart';
 import 'package:internative_assignment/product/widget/toast_message.dart';
-import '../../feature/authentication/login/model/login_model.dart';
-import '../../feature/authentication/signup/model/signup_model.dart';
+
 import '../model/user_token_model.dart';
 
 class AuthService {

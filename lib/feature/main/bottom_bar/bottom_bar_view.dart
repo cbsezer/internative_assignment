@@ -43,7 +43,7 @@ class _TabBlogViewState extends State<TabBlogView> with TickerProviderStateMixin
         body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
-            children:  [FavoritesView(), HomeView(), ProfileView()]),
+            children: [const FavoritesView(), HomeView(), ProfileView()]),
         bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.vertical(top: context.normalRadius),
           child: BottomAppBar(

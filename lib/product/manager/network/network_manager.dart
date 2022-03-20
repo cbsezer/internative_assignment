@@ -13,21 +13,19 @@ class NetworkManager {
 
   NetworkManager._init();
 
-  Future<Response> dioRequest(
-      {Map<String, dynamic>? queryJson,
-      required String path,
-      required String method,
-      required bool authentication}) async {
+  Future<Response> dioRequest({Map<String, dynamic>? queryJson, required String path, required String method}) async {
     var dio = Dio(BaseOptions(connectTimeout: 30000, receiveTimeout: 30000, sendTimeout: 30000));
-    var headers = {'Content-type': 'application/json', 'Authorization': 'Bearer ${UserCacheService().getUserToken()}'};
+    var headers = {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ${await UserCacheService().getUserToken()}'
+    };
+
+    print(headers);
 
     var _url = 'http://test20.internative.net/';
     var _uri = _url + path;
     if (method == DioRequestTypes.GET.name) {
-      return await dio.get(_uri);
-    } else if (method == DioRequestTypes.POST.name && (authentication)) {
-      UserCacheService().saveUserToken('aaaa');
-      return await dio.post(_uri, options: Options(headers: headers), data: queryJson);
+      return await dio.get(_uri, options: Options(headers: headers));
     } else {
       return await dio.post(_uri, options: Options(headers: headers), data: queryJson);
     }

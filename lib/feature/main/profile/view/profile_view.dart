@@ -28,7 +28,7 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
           Stack(
             children: [
               ClipRRect(
-                borderRadius: GeneralRadius.allNormal(),
+                borderRadius: const GeneralRadius.allNormal(),
                 child: Image.asset(ImageConstants.instance.defaultUser, height: context.height * .15),
               ),
               Positioned(
@@ -38,14 +38,14 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
                       onPressed: () {
                         showImagePickers(context);
                       },
-                      icon: Icon(FontAwesomeIcons.camera)))
+                      icon: const Icon(FontAwesomeIcons.camera)))
             ],
           ),
           context.emptySizedHeightBoxLow3x,
           SizedBox(
             height: context.height * .2,
             child: ClipRRect(
-              borderRadius: GeneralRadius.all(),
+              borderRadius: const GeneralRadius.all(),
               child: GoogleMap(
                 // ignore: prefer_collection_literals
                 markers: Set<Marker>.of(
@@ -69,7 +69,7 @@ class ProfileView extends StatelessWidget with ImagePickerMixin {
           CustomElevatedButton(
               title: TextConstants.instance.save,
               onPressed: () async {
-                await context.router.navigate(LoginRoute());
+                await context.router.navigate(const LoginRoute());
               },
               isWhite: true),
           context.emptySizedHeightBoxLow3x,

@@ -16,7 +16,7 @@ class ImagePickerSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PagePadding.all(),
+      padding: const PagePadding.all(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -25,7 +25,7 @@ class ImagePickerSheet extends StatelessWidget {
               Container(
                 width: context.width,
                 height: context.width,
-                decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: GeneralRadius.allLow()),
+                decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: const GeneralRadius.allLow()),
               ),
               Positioned.fill(
                   child: IconButton(
@@ -33,7 +33,7 @@ class ImagePickerSheet extends StatelessWidget {
                         final result = await picker.pickImage(source: ImageSource.gallery);
                         Navigator.pop(context, result);
                       },
-                      icon: Icon(FontAwesomeIcons.camera)))
+                      icon: const Icon(FontAwesomeIcons.camera)))
             ],
           ),
           context.emptySizedHeightBoxHigh,
@@ -44,14 +44,14 @@ class ImagePickerSheet extends StatelessWidget {
                   title: TextConstants.instance.select,
                   buttonWidth: context.width * .45,
                   onPressed: () {
-                    return context.router.navigate(LoginRoute());
+                    return context.router.navigate(const LoginRoute());
                   },
                   isWhite: false),
               CustomElevatedButton(
                   buttonWidth: context.width * .45,
                   title: TextConstants.instance.remove,
                   onPressed: () {
-                    return context.router.navigate(LoginRoute());
+                    return context.router.navigate(const LoginRoute());
                   },
                   isWhite: true),
             ],
