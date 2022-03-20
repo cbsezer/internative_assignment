@@ -32,10 +32,8 @@ abstract class _BlogViewModel with Store {
   @action
   Future<void> fetchBlogs(String categoryId) async {
     dataChanged(value: true);
-    final response = await NetworkManager.instance.dioRequest(
-        path: 'Blog/GetBlogs',
-        method: DioRequestTypes.POST.name,
-        queryJson: {"CategoryId": "620ceffecd70d74ab56d5b81"});
+    final response = await NetworkManager.instance
+        .dioRequest(path: 'Blog/GetBlogs', method: DioRequestTypes.POST.name, queryJson: {"CategoryId": categoryId});
     final responseModel = BlogModel.fromJson(response.data);
     blogs = responseModel.blogs ?? [];
     dataChanged(value: false);

@@ -31,7 +31,7 @@ class _TabBlogViewState extends State<TabBlogView> with TickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _BlogTabItems.values.length, vsync: this);
+    _tabController = TabController(length: _BlogTabItems.values.length, vsync: this, initialIndex: 1);
   }
 
   @override

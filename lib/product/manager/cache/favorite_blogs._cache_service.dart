@@ -7,28 +7,28 @@ import 'hive_keys.dart';
 
 class FavoritesCacheService {
   Future<void> addFavoritesList({required Blog blog}) async {
+    await Hive.openBox(HiveBoxKey.favorites.name);
+
     var favoritesBox = Hive.box(HiveBoxKey.favorites.name);
-    await favoritesBox.add(jsonEncode(blog.toJson()));
+    if (!favoritesBox.values.toList().contains(jsonEncode(blog.toJson()))) {
+      await favoritesBox.add(jsonEncode(blog.toJson()));
+    }
   }
 
-  List<BlogModel> getAllFavoriteBlogs() {
+  List<Blog> getAllFavoriteBlogs() {
     var favoritesBox = Hive.box(HiveBoxKey.favorites.name);
     var allList = favoritesBox.values.toList();
-    var localFavoritesList = <BlogModel>[];
+    var localFavoritesList = <Blog>[];
     for (var element in allList) {
-      localFavoritesList.add(BlogModel.fromJson(jsonDecode(element)));
+      localFavoritesList.add(Blog.fromJson(jsonDecode(element)));
     }
     return localFavoritesList;
   }
 
-  Future<void> deleteFromFavoritesList({required Blog blog}) async {
-    var favoritesBox = Hive.box(HiveBoxKey.favorites.name);
-    await favoritesBox.delete(jsonEncode(blog.toJson()));
-  }
-
-  Future<void> clearUserBox() async {
+  Future<void> deleteFromFavoritesList({required int index}) async {
     await Hive.openBox(HiveBoxKey.favorites.name);
-    var tokenBox = Hive.box(HiveBoxKey.favorites.name);
-    await tokenBox.clear();
+
+    var favoritesBox = Hive.box(HiveBoxKey.favorites.name);
+    await favoritesBox.deleteAt(index);
   }
 }
